@@ -1,0 +1,105 @@
+:root {
+    --bg: #151922;
+    --card: #1e2330;
+    --text: #ffffff;
+    --muted: #8b93a7;
+    --accent: #f0b429;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#home {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h1 span {
+    color: var(--accent);
+}
+
+.subtitle {
+    color: var(--muted);
+    margin: 12px 0 28px;
+    line-height: 1.5;
+}
+
+#search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#city-input {
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid #2c3345;
+    border-radius: 10px;
+}
+
+#city-input:focus {
+    outline: none;
+    border-color: var(--accent)
+}
+
+#search-form button {
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.quick-cities {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.chip {
+    padding: 8px 16px;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid #2c3345;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.chip:hover {
+    color: var(--text);
+    border-color: var(--accent);
+}
