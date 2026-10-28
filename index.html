@@ -5,10 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WetterApp</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <h1>WetterApp</h1>
+    <main>
+        <section id="home">
+            <div class="logo">⛅</div>
+            <h1>Wetter<span>App</span></h1>
+            <p class="subtitle">Finde das aktuelle Wetter und die Vorhersage für deine Stadt</p>
+
+            <form id="search-form">
+                <input id="city-input" type="text" placeholder="Stadt eingeben..." autocomplete="off" required>
+                <button type="submit">Wetter anzeigen</button>
+            </form>
+            <div class="quick-cities">
+                <button type="button" class="chip">Wolfsburg</button>
+                <button type="button" class="chip">Berlin</button>
+                <button type="button" class="chip">München</button>
+                <button type="button" class="chip">Hamburg</button>
+                <button type="button" class="chip">Wien</button>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>
