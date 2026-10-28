@@ -26,11 +26,17 @@ main {
     padding: 20px;
 }
 
-#home {
+#home,
+#forecast,
+#detail {
     width: 100%;
     max-width: 400px;
+}
+
+#home {
     text-align: center;
 }
+
 
 .logo {
     font-size: 3.5rem;
@@ -102,4 +108,37 @@ h1 span {
 .chip:hover {
     color: var(--text);
     border-color: var(--accent);
+}
+
+.hidden {
+    display: none;
+}
+
+.view-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid #2c3345;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.view-sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.day-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

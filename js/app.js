@@ -1,6 +1,13 @@
 const searchForm = document.getElementById("search-form");
 const cityInput = document.getElementById("city-input");
 
+function showView(id) {
+    document.querySelectorAll("main > section").forEach(function (section) {
+        section.classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+}
+
 async function getCoordinates(city) {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=de`;
     const response = await fetch(url);
@@ -26,7 +33,8 @@ searchForm.addEventListener("submit", async function (event) {
     try {
         const place = await getCoordinates(city);
         const weather = await getWeather(place.latitude, place.longitude);
-        console.log(place.name, weather);
+        document.getElementById("forecast-city").textContent = place.name;
+        showView("forecast");
     } catch (error) {
         console.log("Fehler:", error.message);
     }
@@ -37,4 +45,8 @@ document.querySelectorAll(".chip").forEach(function (chip) {
         cityInput.value = chip.textContent;
         searchForm.requestSubmit();
     });
+});
+
+document.getElementById("back-home").addEventListener("click", function () {
+    showView("home");
 });
