@@ -31,7 +31,7 @@ function formatWeekday(dateString, index) {
     return date.toLocaleDateString("de-DE", { weekday: "long", timeZone: "UTC" });
 }
 
-function renderWeek(weather) {
+function renderWeek(weather, place) {
     const dayList = document.getElementById("day-list");
     dayList.innerHTML = "";
     weather.daily.time.forEach(function (date, index) {
@@ -47,11 +47,57 @@ function renderWeek(weather) {
                 <span class="day-temp">${max}° / ${min}°</span>
             </button>`;
         item.querySelector("button").addEventListener("click", function () {
-            console.log("Tag angeklickt:", index);
+            renderDetail(weather, place, index);
+            showView("detail");
         });
         dayList.appendChild(item);
     });
 }
+function renderDetail(weather, place, dayIndex) {
+    const daily = weather.daily;
+    const hourly = weather.hourly;
+    const firstHour = dayIndex * 24;
+
+    let temp, feels, code, label;
+    if (dayIndex === 0) {
+        temp = weather.current.temperature_2m;
+        feels = weather.current.apparent_temperature;
+        code = weather.current.weather_code;
+        label = "Aktuell";
+    } else {
+        temp = hourly.temperature_2m[firstHour + 12];
+        feels = hourly.apparent_temperature[firstHour + 12];
+        code = hourly.weather_code[firstHour + 12];
+        label = "Mittags um 12 Uhr";
+    }
+    const info = getWeatherInfo(code);
+    const dateText = new Date(daily.time[dayIndex]).toLocaleDateString("de-DE", { day: "numeric", month: "long", timeZone: "UTC" });
+
+    document.getElementById("detail-day").textContent = formatWeekday(daily.time[dayIndex], dayIndex);
+    document.getElementById("detail-sub").textContent = dateText + " · " + place.name;
+    document.getElementById("detail-icon").textContent = info.icon;
+    document.getElementById("detail-text").textContent = info.text;
+    document.getElementById("detail-temp").textContent = Math.round(temp) + "°";
+    document.getElementById("detail-label").textContent = label;
+    document.getElementById("detail-feels").textContent = Math.round(feels) + "°";
+    document.getElementById("detail-min").textContent = Math.round(daily.temperature_2m_min[dayIndex]) + "°";
+    document.getElementById("detail-max").textContent = Math.round(daily.temperature_2m_max[dayIndex]) + "°";
+
+    const hourList = document.getElementById("hour-list");
+    hourList.innerHTML = "";
+    for (let hour = 0; hour < 24; hour++) {
+        const i = firstHour + hour;
+        const hourInfo = getWeatherInfo(hourly.weather_code[i]);
+        const item = document.createElement("li");
+        item.innerHTML = `
+            <span class="hour-time">${hourly.time[i].slice(11)}</span>
+            <span class="hour-icon">${hourInfo.icon}</span>
+            <strong class="hour-temp">${Math.round(hourly.temperature_2m[i])}°</strong>
+            <span class="hour-feels">Gefühlt ${Math.round(hourly.apparent_temperature[i])}°</span>`;
+        hourList.appendChild(item);
+    }
+}
+
 searchForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     const city = cityInput.value.trim();
@@ -62,7 +108,7 @@ searchForm.addEventListener("submit", async function (event) {
         const place = await getCoordinates(city);
         const weather = await getWeather(place.latitude, place.longitude);
         document.getElementById("forecast-city").textContent = place.name;
-        renderWeek(weather);
+        renderWeek(weather, place);
         showView("forecast");
     } catch (error) {
         console.log("Fehler:", error.message);
@@ -78,4 +124,7 @@ document.querySelectorAll(".chip").forEach(function (chip) {
 
 document.getElementById("back-home").addEventListener("click", function () {
     showView("home");
+});
+document.getElementById("back-forecast").addEventListener("click", function () {
+    showView("forecast");
 });
