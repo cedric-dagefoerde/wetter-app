@@ -44,8 +44,8 @@ function renderWeek(weather, place) {
         item.innerHTML = `
             <button type="button" class="day-item">
                 <span class="day-icon">${info.icon}</span>
-                <span class="day-name">${formatWeekday(date, index)}</span>
-                <span class="day-temp">${max}° / ${min}°</span>
+                 <span class="day-name">${formatWeekday(date, index)}<small>${info.text}</small></span>
+                <span class="day-temp"><strong>${max}°</strong> ${min}°</span>
             </button>`;
         item.querySelector("button").addEventListener("click", function () {
             renderDetail(weather, place, index);
