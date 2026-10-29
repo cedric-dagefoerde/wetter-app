@@ -1,5 +1,6 @@
 const searchForm = document.getElementById("search-form");
 const cityInput = document.getElementById("city-input");
+const errorMessage = document.getElementById("error-message");
 
 function showView(id) {
     document.querySelectorAll("main > section").forEach(function (section) {
@@ -104,6 +105,7 @@ searchForm.addEventListener("submit", async function (event) {
     if (!city) {
         return;
     }
+    errorMessage.classList.add("hidden");
     try {
         const place = await getCoordinates(city);
         const weather = await getWeather(place.latitude, place.longitude);
@@ -111,7 +113,12 @@ searchForm.addEventListener("submit", async function (event) {
         renderWeek(weather, place);
         showView("forecast");
     } catch (error) {
-        console.log("Fehler:", error.message);
+        if (error.message === "Stadt nicht gefunden") {
+            errorMessage.textContent = "Stadt nicht gefunden. Bitte prüfe die Schreibweise.";
+        } else {
+            errorMessage.textContent = "Wetterdaten konnten nicht geladen werden. Bitte versuche es später noch einmal.";
+        }
+        errorMessage.classList.remove("hidden");
     }
 });
 
