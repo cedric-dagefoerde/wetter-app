@@ -167,7 +167,8 @@ h1 span {
 }
 
 .day-icon {
-    font-size: 1.6rem;
+    width: 32px;
+    height: 32px;
 }
 
 .day-name {
@@ -192,8 +193,10 @@ h1 span {
 }
 
 .detail-icon {
-    font-size: 4rem;
-    text-align: center;
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 8px;
 }
 
 .detail-text {
@@ -261,8 +264,7 @@ h1 span {
 
 .hour-icon {
     width: 28px;
-    font-size: 1.3rem;
-    text-align: center;
+    height: 24px;
 }
 
 .hour-temp {
