@@ -142,3 +142,35 @@ h1 span {
     flex-direction: column;
     gap: 10px;
 }
+
+.day-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: left;
+    color: var(--text);
+    background: var(--card);
+    border: 1px solid #2c3345;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.day-item:hover {
+    border-color: var(--accent);
+}
+
+.day-icon {
+    font-size: 1.6rem;
+}
+
+.day-name {
+    flex: 1;
+}
+
+.day-temp {
+    color: var(--muted);
+}

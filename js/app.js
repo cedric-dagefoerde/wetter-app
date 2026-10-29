@@ -23,7 +23,35 @@ async function getWeather(latitude, longitude) {
     const response = await fetch(url);
     return await response.json();
 }
+function formatWeekday(dateString, index) {
+    if (index === 0) {
+        return "Heute";
+    }
+    const date = new Date(dateString);
+    return date.toLocaleDateString("de-DE", { weekday: "long", timeZone: "UTC" });
+}
 
+function renderWeek(weather) {
+    const dayList = document.getElementById("day-list");
+    dayList.innerHTML = "";
+    weather.daily.time.forEach(function (date, index) {
+        const info = getWeatherInfo(weather.daily.weather_code[index]);
+        const max = Math.round(weather.daily.temperature_2m_max[index]);
+        const min = Math.round(weather.daily.temperature_2m_min[index]);
+
+        const item = document.createElement("li");
+        item.innerHTML = `
+            <button type="button" class="day-item">
+                <span class="day-icon">${info.icon}</span>
+                <span class="day-name">${formatWeekday(date, index)}</span>
+                <span class="day-temp">${max}° / ${min}°</span>
+            </button>`;
+        item.querySelector("button").addEventListener("click", function () {
+            console.log("Tag angeklickt:", index);
+        });
+        dayList.appendChild(item);
+    });
+}
 searchForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     const city = cityInput.value.trim();
@@ -34,6 +62,7 @@ searchForm.addEventListener("submit", async function (event) {
         const place = await getCoordinates(city);
         const weather = await getWeather(place.latitude, place.longitude);
         document.getElementById("forecast-city").textContent = place.name;
+        renderWeek(weather);
         showView("forecast");
     } catch (error) {
         console.log("Fehler:", error.message);
