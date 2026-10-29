@@ -21,6 +21,7 @@ body {
 
 main {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -319,5 +320,77 @@ main>section {
 
     #detail .view-header {
         grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 12px;
+    }
+
+    #forecast,
+    #detail {
+        align-self: flex-start;
+    }
+
+    .view-header {
+        margin-bottom: 12px;
+    }
+
+    .day-list {
+        gap: 8px;
+    }
+
+    .day-item {
+        padding: 10px 14px;
+    }
+
+    .card {
+        padding: 14px;
+        margin-bottom: 12px;
+    }
+
+    .detail-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 4px;
+    }
+
+    .detail-temp {
+        font-size: 3rem;
+        line-height: 1.1;
+    }
+
+    .detail-label {
+        margin-bottom: 12px;
+    }
+
+    .stat {
+        padding: 8px;
+    }
+
+    #detail:not(.hidden) {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 24px);
+        height: calc(100dvh - 24px);
+    }
+
+    #detail .card:last-child {
+        flex: 1;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .hour-list {
+        flex: 1;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .hour-list li {
+        padding: 8px 4px;
     }
 }
