@@ -131,6 +131,11 @@ h1 span {
     border: 1px solid #2c3345;
     border-radius: 10px;
     cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.back-btn:hover {
+    border-color: var(--accent);
 }
 
 .view-sub {
