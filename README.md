@@ -63,7 +63,6 @@ Eine Internetverbindung ist nötig, weil die Daten live von Open-Meteo kommen.
 - Für spätere Tage gibt es keine „aktuelle“ Temperatur – die Detailansicht zeigt dort die Werte von 12 Uhr
 - Die Wochenliste zeigt die vorherrschende Wetterlage des Tages, die Detailansicht von „Heute“ den aktuellen Zustand – Icon und Text können dort deshalb abweichen
 - Der Zurück-Button des Browsers verlässt die App, weil es kein Routing gibt; in der App gibt es dafür den Zurück-Pfeil
-- Keine automatisierten Tests
 
 ## Hinweis zur Entstehung
 
