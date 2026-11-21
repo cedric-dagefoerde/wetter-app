@@ -2,7 +2,7 @@
 
 Kleine Wetter-Web-App: Stadt suchen, 7-Tage-Vorhersage ansehen und für jeden Tag die Details mit Stundenverlauf öffnen. Projektaufgabe aus einem Bewerbungsverfahren (Fachinformatiker Anwendungsentwicklung).
 
-**Live-Demo:** https://cedric-dagefoerde.github.io/wetter-app/
+**Live-Demo:** https://cedric-dagefoerde.github.io/wetter-app/Aufgabe%204/
 
 ![Home, Wochenübersicht und Detailansicht auf dem Handy](screenshots/mobil.png)
 
