@@ -83,7 +83,7 @@ function renderDetail(weather, place, dayIndex) {
     const dateText = new Date(daily.time[dayIndex]).toLocaleDateString("de-DE", { day: "numeric", month: "long", timeZone: "UTC" });
 
     document.getElementById("detail-day").textContent = formatWeekday(daily.time[dayIndex], dayIndex);
-    document.getElementById("detail-sub").textContent = dateText + " · " + place.name;
+    document.getElementById("detail-sub").textContent = dateText + " · " + place.name + ", " + place.country;
     document.getElementById("detail-icon").src = "icons/" + info.icon + ".svg";
     document.getElementById("detail-text").textContent = info.text;
     document.getElementById("detail-temp").textContent = Math.round(temp) + "°";
@@ -121,6 +121,7 @@ searchForm.addEventListener("submit", async function (event) {
         const place = await getCoordinates(city);
         const weather = await getWeather(place.latitude, place.longitude);
         document.getElementById("forecast-city").textContent = place.name;
+        document.getElementById("forecast-country").textContent = place.country;
         renderWeek(weather, place);
         showView("forecast");
     } catch (error) {
